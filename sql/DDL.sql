@@ -1,4 +1,4 @@
-    -- Creazione del database
+-- Creazione del database
 CREATE DATABASE IF NOT EXISTS agm_express;
 
 -- Utilizzo del database
@@ -21,14 +21,11 @@ CREATE TABLE IF NOT EXISTS stato_consegne (
 -- Creazione della tabella clienti
 CREATE TABLE IF NOT EXISTS clienti(
    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-   nome VARCHAR(50) NOT NULL,
-   p_iva BIGINT NOT NULL,
-   cognome VARCHAR(30) NOT NULL,
-   n_telefono VARCHAR(15) NOT NULL
    nome VARCHAR(50),
    p_iva BIGINT,
    cognome VARCHAR(30),
-   n_telefono VARCHAR(15)
+   n_telefono VARCHAR(15),
+   id_indirizzo INT
 );
 
 -- Creazione della tabella pacchi

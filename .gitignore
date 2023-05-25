@@ -9,9 +9,6 @@ target/
 !.mvn/wrapper/maven-wrapper.properties
 /.mvn
 
-# Application Properties
-/src/main/resources/application.properties
-
 # IDEs
 .idea/
 .vscode/
