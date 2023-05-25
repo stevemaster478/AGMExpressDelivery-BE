@@ -1,4 +1,4 @@
-package entity;
+package it.academy.AGMExpress.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
