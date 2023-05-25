@@ -1,4 +1,4 @@
--- Creazione del database
+    -- Creazione del database
 CREATE DATABASE IF NOT EXISTS agm_express;
 
 -- Utilizzo del database
@@ -24,8 +24,7 @@ CREATE TABLE IF NOT EXISTS clienti(
    nome VARCHAR(50),
    p_iva BIGINT,
    cognome VARCHAR(30),
-   n_telefono VARCHAR(15),
-   id_indirizzo INT
+   n_telefono VARCHAR(15)
 );
 
 -- Creazione della tabella pacchi
