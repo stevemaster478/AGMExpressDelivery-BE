@@ -19,22 +19,14 @@ target/
 
 /.mvn
 
-<<<<<<< HEAD
 # Application Properties
 /src/main/resources/application.properties
-
-=======
-
 
 
 # Application Properties
 
 /src/main/resources/application.properties
 
-
-
-
->>>>>>> 37b4ba6945c245a3c1c2c5532fee3944ffa7df02
 # IDEs
 
 .idea/
