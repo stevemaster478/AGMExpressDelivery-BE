@@ -3,13 +3,21 @@ package it.academy.AGMExpress.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "consegna")
 public class Consegna {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -24,22 +32,22 @@ public class Consegna {
     @Column(name = "targa", nullable = false)
     private String targa;
 
-    @Column(name = "id_pacchi", nullable = false)
-    private int idPacchi;
-
-    @Column(name = "id_stato_consegne", nullable = false)
+    @Column(name = "id_stato_consegna", nullable = false, insertable = false, updatable = false)
     private int idStatoConsegne;
 
     @ManyToOne
-    @JoinColumn(name = "targa", referencedColumnName = "targa")
+    @JoinColumn(name = "targa", referencedColumnName = "targa", insertable = false, updatable = false)
     private Furgone furgone;
 
-    @ManyToMany
-    @JoinColumn(name = "id_pacchi", referencedColumnName = "id")
-    private Pacco pacco;
-
     @ManyToOne
-    @JoinColumn(name = "id_stato_consegn", referencedColumnName = "id")
+    @JoinColumn(name = "id_stato_consegna", referencedColumnName = "id", insertable = false, updatable = false)
     private StatoConsegna statoConsegna;
 
+    @ManyToMany
+    @JoinTable(
+            name = "pacco_consegna",
+            joinColumns = @JoinColumn(name = "id_consegna"),
+            inverseJoinColumns = @JoinColumn(name = "id_pacco")
+    )
+    private List<Pacco> pacchi;
 }

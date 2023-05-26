@@ -17,18 +17,22 @@ public class Indirizzo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable = false)
-    int id;
+    private int id;
 
-    String via;
+    @Column(nullable = false)
+    private String via;
 
-    int cap;
+    @Column(nullable = false)
+    private int cap;
 
-    @Column(name="nr_civico")
-    int numeroCivico;
+    @Column(name="nr_civico", nullable = false)
+    private int numeroCivico;
 
-    String interno;
+    @Column(nullable = false)
+    private String interno;
 
-    String citta;
+    @Column(nullable = false)
+    private String citta;
 
 
     @ManyToOne

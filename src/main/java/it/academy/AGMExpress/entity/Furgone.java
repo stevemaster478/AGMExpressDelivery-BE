@@ -1,5 +1,7 @@
 package it.academy.AGMExpress.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,4 +24,8 @@ public class Furgone {
 
     @Column(nullable = false)
     private String modello;
+
+    @OneToMany(mappedBy = "furgone")
+    private List<Consegna> consegne;
+
 }
