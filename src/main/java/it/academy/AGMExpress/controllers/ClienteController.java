@@ -1,0 +1,17 @@
+package it.academy.AGMExpress.controllers;
+
+
+import it.academy.AGMExpress.services.ClienteService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/clienti")
+public class ClienteController {
+
+
+    private final ClienteService clienteService;
+
+
+
+}
