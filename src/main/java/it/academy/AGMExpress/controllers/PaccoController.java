@@ -2,6 +2,8 @@ package it.academy.AGMExpress.controllers;
 
 import it.academy.AGMExpress.entity.Pacco;
 import it.academy.AGMExpress.services.PaccoService;
+import it.academy.AGMExpress.utilities.TrackingCodeGenerator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,10 +38,25 @@ public class PaccoController {
         return ResponseEntity.ok(pacco);
     }
     @PostMapping
-    ResponseEntity<Void> createPacco(@RequestBody Pacco pacco) {
+    public ResponseEntity<Void> createPacco(@RequestBody Pacco pacco) {
+        if (pacco.getTrackingCode() == null || pacco.getTrackingCode().isEmpty()) {
+            // Genera un nuovo tracking code utilizzando il tuo generatore di tracking code
+            String trackingCode = TrackingCodeGenerator.generateTrackingCode();
+            pacco.setTrackingCode(trackingCode);
+        } else {
+            // Verifica che il tracking code inserito rispetti il formato desiderato |
+            // Metodo regex
+            String regex = "^[A-Za-z0-9]{10}$";
+            if (!pacco.getTrackingCode().matches(regex)) {
+                // Ritorna una risposta HTTP 400 - Bad Request se il tracking code non è valido
+                return ResponseEntity.badRequest().build();
+            }
+        }
+
         paccoService.savePacco(pacco);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Void> updatePacco(@PathVariable int id, @RequestBody Pacco pacco) {
         Pacco existingPacco = paccoService.getPaccoById(id);

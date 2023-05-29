@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import it.academy.AGMExpress.entity.Furgone;
 import it.academy.AGMExpress.services.FurgoneService;
+import it.academy.AGMExpress.utilities.TargaGenerator;
 
 @RestController
 @RequestMapping("/furgoni")
@@ -53,6 +54,18 @@ public class FurgoneController {
     // Operazione POST per creare un nuovo furgone
     @PostMapping
     public ResponseEntity<Void> createFurgone(@RequestBody Furgone furgone) {
+        if (furgone.getTarga() == null || furgone.getTarga().isEmpty()) {
+            // Genera una nuova targa utilizzando il tuo generatore di targa
+            String targaItaliana = TargaGenerator.generateTargaItaliana();
+            furgone.setTarga(targaItaliana);
+        } else {
+            // Verifica che la targa inserita rispetti il formato italiano | Metodo regex
+            if (!furgone.getTarga().matches("^[A-Z]{2}\\d{3}[A-Z]{2}$")) {
+                // Ritorna una risposta HTTP 400 - Bad Request se la targa non è valida
+                return ResponseEntity.badRequest().build();
+            }
+        }
+
         furgoneService.saveFurgone(furgone);
 
         // Ritorna una risposta HTTP 201 - Created

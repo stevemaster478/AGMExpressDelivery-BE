@@ -1,14 +1,13 @@
 package it.academy.AGMExpress.entity;
 
+import it.academy.AGMExpress.utilities.TrackingCodeGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
 @ToString
 @Entity
@@ -23,7 +22,7 @@ public class Pacco {
     private int id_mittente;
 
     @Column(nullable = false)
-    
+
     private int id_destinatario;
 
     @Column(nullable = false)
@@ -57,4 +56,8 @@ public class Pacco {
     @ManyToOne
     @JoinColumn(name = "id_destinatario", referencedColumnName = "id", insertable = false, updatable = false)
     private Cliente destinatario;
+
+    public Pacco() {
+        this.trackingCode = TrackingCodeGenerator.generateTrackingCode();
+    }
 }
