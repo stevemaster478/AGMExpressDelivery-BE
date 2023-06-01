@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 import java.util.List;
 
 @Entity
@@ -32,8 +33,8 @@ public class Consegna {
     @Column(name = "targa", nullable = false)
     private String targa;
 
-    @Column(name = "id_stato_consegna", nullable = false, insertable = false, updatable = false)
-    private int idStatoConsegne;
+    @Column(name = "id_stato_consegna", nullable = false)
+    private int idStatoConsegna;
 
     @ManyToOne
     @JoinColumn(name = "targa", referencedColumnName = "targa", insertable = false, updatable = false)
@@ -44,10 +45,6 @@ public class Consegna {
     private StatoConsegna statoConsegna;
 
     @ManyToMany
-    @JoinTable(
-            name = "pacco_consegna",
-            joinColumns = @JoinColumn(name = "id_consegna"),
-            inverseJoinColumns = @JoinColumn(name = "id_pacco")
-    )
+    @JoinTable(name = "pacco_consegna", joinColumns = @JoinColumn(name = "id_consegna"), inverseJoinColumns = @JoinColumn(name = "id_pacco"))
     private List<Pacco> pacchi;
 }
