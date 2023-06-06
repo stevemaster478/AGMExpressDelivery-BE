@@ -2,7 +2,6 @@ package it.academy.AGMExpress.controllers;
 
 
 import it.academy.AGMExpress.entity.Cliente;
-import it.academy.AGMExpress.entity.Consegna;
 import it.academy.AGMExpress.repositories.ClienteRepository;
 import it.academy.AGMExpress.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/clienti")
@@ -18,13 +19,11 @@ public class ClienteController {
 
 
     private final ClienteService clienteService;
-    private final ClienteRepository clienteRepository;
-
+    
     @Autowired
     public ClienteController(ClienteService clienteService,
-                             ClienteRepository clienteRepository) {
+    ClienteRepository clienteRepository) {
         this.clienteService = clienteService;
-        this.clienteRepository = clienteRepository;
     }
 
 
@@ -58,8 +57,24 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> updateCliente(@PathVariable int id, @RequestBody Cliente c) {
-        return ResponseEntity.ok(clienteService.updateCliente(c).get());
+        Optional<Cliente> clienteOptional = clienteService.updateCliente(c);
+        if (clienteOptional.isPresent()) {
+            return ResponseEntity.ok(clienteOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCliente(@PathVariable int id) {
+        boolean deleted = clienteService.deleteCliente(id);
+        if (deleted) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
 

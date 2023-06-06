@@ -14,7 +14,7 @@ public interface ClienteService {
 
     void saveCliente(Cliente c);
 
-    void deleteCliente(int id);
+    boolean deleteCliente(int id);
 
     Optional<Cliente> updateCliente(Cliente c);
 }
