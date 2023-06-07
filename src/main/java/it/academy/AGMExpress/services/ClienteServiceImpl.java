@@ -2,12 +2,14 @@ package it.academy.AGMExpress.services;
 
 import it.academy.AGMExpress.entity.Cliente;
 import it.academy.AGMExpress.repositories.ClienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
@@ -35,8 +37,13 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public void deleteCliente(int id) {
-        clienteRepository.deleteById(id);
+    public boolean deleteCliente(int id) {
+        try {
+            clienteRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

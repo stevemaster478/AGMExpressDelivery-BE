@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+
+  mysqldb:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: agm_express
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3307:3306
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - my-network
+
+  agm-express:
+    depends_on:
+      - mysqldb
+    build: .
+    command: java -jar /app/AGMExpress-0.0.1-SNAPSHOT.jar
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/agm_express?allowPublicKeyRetrieval=true&useSSL=false
+    ports:
+      - 8081:8080
+    networks:
+      - my-network
+
+
+volumes:
+  db:
+
+networks:
+  my-network:

@@ -45,6 +45,20 @@ public class StatoConsegnaController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteStatoConsegna(@PathVariable int id) {
+        StatoConsegna statoConsegna = statoConsegnaService.getStatoConsegnaById(id);
+
+        if (statoConsegna == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        statoConsegnaService.deleteStatoConsegna(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Elemento non trovato!");

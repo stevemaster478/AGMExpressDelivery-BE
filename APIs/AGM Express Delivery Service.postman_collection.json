@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "11e2da2c-146b-4715-ba6d-1c8296ce76e8",
 		"name": "AGM Express Delivery Service",
-		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these request types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT and PATCH requests.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a variable called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more scripts in \"Tests\" to verify if the API works as expected and execute flows.\n    \n\n## ℹ️ Resources\n\n[Building requests](https://learning.postman.com/docs/sending-requests/requests/)  \n[Authorizing requests](https://learning.postman.com/docs/sending-requests/authorization/)  \n[Using variables](https://learning.postman.com/docs/sending-requests/variables/)  \n[Managing environments](https://learning.postman.com/docs/sending-requests/managing-environments/)  \n[Writing scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)",
+		"description": "**Endpoints of AGM Express Delivery Service:**\n\nSOCKET { HOST : PORT }:\n\n- [http://localhost:8080](http://localhost:8080)\n    \n\nno context-path included",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25867508"
 	},
@@ -505,7 +505,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"inizio_consegna_data\": \"29/05/2023\",\n    \"fine_consegna_data\": \"30/05/2023\",\n    \"targa\": \"AZ213BA\",\n    \"id_stato_consegna\": 1\n}",
+					"raw": "{\n\t\"fineConsegnaData\": \"30/05/2023\",\n    \"idStatoConsegna\": 1,\n    \"inizioConsegnaData\": \"29/05/2023\",\n    \"targa\": \"TO-66-ZD\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -591,7 +591,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"avanzamento\": \"completato\",\n    \"stato_consegna\": \"consegnato al destinatario\"\n}",
+					"raw": "{\n\t\"avanzamento\": \"completato\",\n    \"statoConsegna\": \"consegnato al destinatario\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -634,7 +634,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"cognome\": \"Rossi\",\n    \"nome\": \"Paolo\",\n    \"n_telefono\": 3801449528,\n    \"p_iva\": 3012358148\n}",
+					"raw": "{\n\t\"cognome\": \"Rossi\",\n    \"nome\": \"Paolo\",\n    \"numeroTelefono\": 3801449528,\n    \"partitaIva\": 3012358148\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -677,7 +677,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"cap\": 10010,\n    \"citta\": \"Torino\",\n    \"interno\": \"2B\",\n    \"nr_civico\": 241,\n    \"via\": \"Via Garibaldi\",\n    \"cliente_id\": 3\n}",
+					"raw": "{\n\t\"cap\": 10010,\n    \"citta\": \"Torino\",\n    \"interno\": \"2B\",\n    \"numeroCivico\": 241,\n    \"via\": \"Via Garibaldi\",\n    \"cliente_id\": 3\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1327,7 +1327,7 @@
 		},
 		{
 			"key": "base_url",
-			"value": "https://postman-rest-api-learner.glitch.me/"
+			"value": "http://localhost:8080"
 		}
 	]
 }
