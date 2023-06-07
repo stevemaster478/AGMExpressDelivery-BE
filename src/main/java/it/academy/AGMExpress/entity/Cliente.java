@@ -42,4 +42,8 @@ public class Cliente {
     @OneToMany(mappedBy = "destinatario")
     private List<Pacco> pacchiRicevuti;
 
+    @ManyToOne
+    @JoinColumn(name = "ruolo_id", nullable = false)
+    private Ruolo ruolo;
+
 }

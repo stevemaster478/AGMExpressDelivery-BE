@@ -1,9 +1,16 @@
 package it.academy.AGMExpress.entity;
 
-import jakarta.persistence.*;
+import java.util.List;
 
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@Data
+@ToString
+@NoArgsConstructor
 @Table(name = "stato_consegna")
 public class StatoConsegna {
     @Id
@@ -17,27 +24,6 @@ public class StatoConsegna {
     @Column(nullable = false)
     private String statoConsegna;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getAvanzamento() {
-        return avanzamento;
-    }
-
-    public void setAvanzamento(String avanzamento) {
-        this.avanzamento = avanzamento;
-    }
-
-    public String getStatoConsegna() {
-        return statoConsegna;
-    }
-
-    public void setStatoConsegna(String statoConsegna) {
-        this.statoConsegna = statoConsegna;
-    }
+    @OneToMany(mappedBy = "statoConsegna")
+    private List<Consegna> consegne;
 }
