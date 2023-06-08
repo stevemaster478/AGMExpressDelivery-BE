@@ -4,6 +4,8 @@ import lombok.*;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +22,7 @@ public class Ruolo {
     @Column(name = "nome")
     private String nome;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ruolo")
     private List<Cliente> clienti;
 }

@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.ToString;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @AllArgsConstructor
 @Data
 @ToString
@@ -46,13 +48,16 @@ public class Pacco {
     @Column(nullable = false)
     private String trackingCode;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "pacchi")
     private List<Consegna> consegne;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_mittente", referencedColumnName = "id", insertable = false, updatable = false)
     private Cliente mittente;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_destinatario", referencedColumnName = "id", insertable = false, updatable = false)
     private Cliente destinatario;

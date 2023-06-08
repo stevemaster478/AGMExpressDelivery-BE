@@ -2,6 +2,8 @@ package it.academy.AGMExpress.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +26,7 @@ public class StatoConsegna {
     @Column(nullable = false)
     private String statoConsegna;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "statoConsegna")
     private List<Consegna> consegne;
 }

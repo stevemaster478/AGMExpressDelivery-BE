@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Getter
 @Setter
@@ -23,23 +25,22 @@ public class Consegna {
 
     @Column(name = "fine_consegna_data", nullable = false)
     private String fineConsegnaData;
-
     @Column(name = "targa", nullable = false)
     private String targa;
-
     @Column(name = "id_stato_consegna", nullable = false)
     private int idStatoConsegna;
 
-    @ManyToOne(fetch = FetchType.EAGER) // Imposta il tipo di caricamento a EAGER per caricare il furgone durante il
-                                        // recupero della consegna
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "targa", referencedColumnName = "targa", insertable = false, updatable = false)
     private Furgone furgone;
 
-    @ManyToOne(fetch = FetchType.EAGER) // Imposta il tipo di caricamento a EAGER per caricare lo stato consegna durante
-                                        // il recupero della consegna
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_stato_consegna", referencedColumnName = "id", insertable = false, updatable = false)
     private StatoConsegna statoConsegna;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "pacco_consegna", joinColumns = @JoinColumn(name = "id_consegna"), inverseJoinColumns = @JoinColumn(name = "id_pacco"))
     private List<Pacco> pacchi;

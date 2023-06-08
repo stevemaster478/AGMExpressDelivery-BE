@@ -10,6 +10,8 @@ import lombok.ToString;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Getter
 @Setter
 @Data
@@ -36,12 +38,15 @@ public class Cliente {
     @Column(name = "n_telefono", nullable = false, length = 15)
     private String numeroTelefono;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "mittente")
     private List<Pacco> pacchiInviati;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "destinatario")
     private List<Pacco> pacchiRicevuti;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ruolo_id", nullable = false)
     private Ruolo ruolo;
