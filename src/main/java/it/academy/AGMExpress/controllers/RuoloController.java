@@ -12,12 +12,9 @@ import it.academy.AGMExpress.services.RuoloService;
 @RestController
 @RequestMapping("/ruoli")
 public class RuoloController {
-    private final RuoloService ruoloService;
 
     @Autowired
-    public RuoloController(RuoloService ruoloService) {
-        this.ruoloService = ruoloService;
-    }
+    private RuoloService ruoloService;
 
     @GetMapping
     public ResponseEntity<List<Ruolo>> getAllRuoli() {

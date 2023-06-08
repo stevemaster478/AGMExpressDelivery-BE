@@ -13,11 +13,10 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/stato_consegna")
 public class StatoConsegnaController {
-    private final StatoConsegnaService statoConsegnaService;
+    
     @Autowired
-    public StatoConsegnaController(StatoConsegnaService statoConsegnaService) {
-        this.statoConsegnaService = statoConsegnaService;
-    }
+    private StatoConsegnaService statoConsegnaService;
+    
     @GetMapping
     public ResponseEntity<List<StatoConsegna>> getAllStatiConsegne(){
         List<StatoConsegna> statiConsegne =statoConsegnaService.getAllStatiConsegne();

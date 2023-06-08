@@ -2,7 +2,6 @@ package it.academy.AGMExpress.controllers;
 
 
 import it.academy.AGMExpress.entity.Cliente;
-import it.academy.AGMExpress.repositories.ClienteRepository;
 import it.academy.AGMExpress.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +16,8 @@ import java.util.Optional;
 @RequestMapping("/clienti")
 public class ClienteController {
 
-
-    private final ClienteService clienteService;
-    
     @Autowired
-    public ClienteController(ClienteService clienteService,
-    ClienteRepository clienteRepository) {
-        this.clienteService = clienteService;
-    }
+    private ClienteService clienteService;
 
 
     @GetMapping(value = {"/", ""})

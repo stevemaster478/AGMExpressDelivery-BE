@@ -15,12 +15,10 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/pacchi")
 public class PaccoController {
-    private final PaccoService paccoService;
     
     @Autowired
-    public PaccoController(PaccoService paccoService) {
-        this.paccoService = paccoService;
-    }
+    private PaccoService paccoService;
+    
     @GetMapping
     public ResponseEntity<List<Pacco>> getAllPacchi(){
         List<Pacco> pacchi = paccoService.getAllPacchi();

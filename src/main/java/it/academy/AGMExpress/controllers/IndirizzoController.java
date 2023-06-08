@@ -1,11 +1,7 @@
 package it.academy.AGMExpress.controllers;
 
 
-import it.academy.AGMExpress.entity.Cliente;
 import it.academy.AGMExpress.entity.Indirizzo;
-import it.academy.AGMExpress.repositories.ClienteRepository;
-import it.academy.AGMExpress.repositories.IndirizzoRepository;
-import it.academy.AGMExpress.services.ClienteService;
 import it.academy.AGMExpress.services.IndirizzoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,16 +15,8 @@ import java.util.List;
 public class IndirizzoController {
 
 
-    private final IndirizzoService indirizzoService;
-    private final IndirizzoRepository indirizzoRepository;
-
     @Autowired
-    public IndirizzoController(IndirizzoService indirizzoService,
-                             IndirizzoRepository indirizzoRepository) {
-        this.indirizzoService = indirizzoService;
-        this.indirizzoRepository = indirizzoRepository;
-    }
-
+    private IndirizzoService indirizzoService;
 
     @GetMapping(value = {"/", ""})
     public ResponseEntity<List<Indirizzo>> getAllIndirizzi() {

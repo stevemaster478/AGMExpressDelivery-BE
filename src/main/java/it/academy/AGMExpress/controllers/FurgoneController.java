@@ -16,12 +16,8 @@ import it.academy.AGMExpress.utilities.TargaGenerator;
 @RequestMapping("/furgoni")
 public class FurgoneController {
 
-    private final FurgoneService furgoneService;
-
     @Autowired
-    public FurgoneController(FurgoneService furgoneService) {
-        this.furgoneService = furgoneService;
-    }
+    private FurgoneService furgoneService;
 
     // Operazione GET per ottenere tutti i furgoni
     @GetMapping

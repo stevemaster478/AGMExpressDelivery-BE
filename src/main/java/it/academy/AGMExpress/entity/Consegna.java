@@ -30,15 +30,17 @@ public class Consegna {
     @Column(name = "id_stato_consegna", nullable = false)
     private int idStatoConsegna;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER) // Imposta il tipo di caricamento a EAGER per caricare il furgone durante il
+                                        // recupero della consegna
     @JoinColumn(name = "targa", referencedColumnName = "targa", insertable = false, updatable = false)
     private Furgone furgone;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER) // Imposta il tipo di caricamento a EAGER per caricare lo stato consegna durante
+                                        // il recupero della consegna
     @JoinColumn(name = "id_stato_consegna", referencedColumnName = "id", insertable = false, updatable = false)
     private StatoConsegna statoConsegna;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "pacco_consegna", joinColumns = @JoinColumn(name = "id_consegna"), inverseJoinColumns = @JoinColumn(name = "id_pacco"))
     private List<Pacco> pacchi;
 }

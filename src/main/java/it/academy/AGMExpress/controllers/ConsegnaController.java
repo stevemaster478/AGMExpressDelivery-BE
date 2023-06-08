@@ -15,12 +15,9 @@ import java.util.NoSuchElementException;
 @RequestMapping("/consegne")
 public class ConsegnaController {
 
-    private final ConsegnaService consegnaService;
-
     @Autowired
-    public ConsegnaController(ConsegnaService consegnaService) {
-        this.consegnaService = consegnaService;
-    }
+    private ConsegnaService consegnaService;
+
 
     @GetMapping
     public ResponseEntity<List<Consegna>> getAllConsegne() {
