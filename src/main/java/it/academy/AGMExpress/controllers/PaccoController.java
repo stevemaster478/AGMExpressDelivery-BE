@@ -60,7 +60,7 @@ public class PaccoController {
     public ResponseEntity<Void> updatePacco(@PathVariable int id, @RequestBody Pacco pacco) {
         Pacco existingPacco = paccoService.getPaccoById(id);
 
-        if(existingPacco == null) {
+        if (existingPacco == null) {
             return ResponseEntity.notFound().build();
         }
         existingPacco.setId_mittente(pacco.getId_mittente());
@@ -77,6 +77,18 @@ public class PaccoController {
 
         return ResponseEntity.noContent().build();
     }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePacco(@PathVariable int id) {
+        Pacco existingPacco = paccoService.getPaccoById(id);
+        if (existingPacco == null) {
+            return ResponseEntity.notFound().build();
+        }
+        paccoService.deletePacco(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Elemento non trovato!");
