@@ -1,6 +1,7 @@
 package it.academy.AGMExpress.controllers;
 
 import it.academy.AGMExpress.entity.Pacco;
+import it.academy.AGMExpress.repositories.PaccoRepository;
 import it.academy.AGMExpress.services.PaccoService;
 import it.academy.AGMExpress.utilities.TrackingCodeGenerator;
 
@@ -15,10 +16,15 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/pacchi")
 public class PaccoController {
+
     private final PaccoService paccoService;
+    private final PaccoRepository paccoRepository;
+
     @Autowired
-    public PaccoController(PaccoService paccoService) {
+    public PaccoController(PaccoService paccoService,
+                           PaccoRepository paccoRepository) {
         this.paccoService = paccoService;
+        this.paccoRepository = paccoRepository;
     }
     @GetMapping
     public ResponseEntity<List<Pacco>> getAllPacchi(){
@@ -28,6 +34,21 @@ public class PaccoController {
         }
         return ResponseEntity.ok(pacchi);
     }
+
+    @PostMapping
+    public ResponseEntity<List<Pacco>> getUserPacchi(@RequestBody Integer idUser){
+
+        List<Pacco> pacchi = paccoRepository.getUserPacchi(idUser);
+        if (pacchi.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(pacchi);
+    }
+
+
+
+
+
     @GetMapping("/{id}")
     public ResponseEntity<Pacco> getPaccoById(@PathVariable int id) {
         Pacco pacco =paccoService.getPaccoById(id);

@@ -17,15 +17,10 @@ import java.util.Optional;
 @RequestMapping("/clienti")
 public class ClienteController {
 
-
-    private final ClienteService clienteService;
-    
     @Autowired
-    public ClienteController(ClienteService clienteService,
-    ClienteRepository clienteRepository) {
-        this.clienteService = clienteService;
-    }
-
+    private ClienteService clienteService;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     @GetMapping(value = {"/", ""})
     public ResponseEntity<List<Cliente>> getAllClienti() {

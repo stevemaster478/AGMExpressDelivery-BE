@@ -47,4 +47,8 @@ public class Consegna {
     @ManyToMany
     @JoinTable(name = "pacco_consegna", joinColumns = @JoinColumn(name = "id_consegna"), inverseJoinColumns = @JoinColumn(name = "id_pacco"))
     private List<Pacco> pacchi;
+
+
+
+    private int id_cliente;
 }
