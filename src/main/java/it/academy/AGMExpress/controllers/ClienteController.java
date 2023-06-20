@@ -2,6 +2,7 @@ package it.academy.AGMExpress.controllers;
 
 
 import it.academy.AGMExpress.entity.Cliente;
+import it.academy.AGMExpress.repositories.ClienteRepository;
 import it.academy.AGMExpress.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,8 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     @GetMapping(value = {"/", ""})
     public ResponseEntity<List<Cliente>> getAllClienti() {
