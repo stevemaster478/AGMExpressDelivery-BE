@@ -12,15 +12,21 @@ import java.util.Optional;
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
+    private RuoloService ruoloService;
+
     @Autowired
     ClienteRepository clienteRepository;
+    
 
 
     @Override
     public List<Cliente> getAllClienti() {
         List<Cliente> clients = new ArrayList<>();
         Iterable<Cliente> consegneIterable = clienteRepository.findAll();
-        consegneIterable.forEach(clients::add);
+        consegneIterable.forEach(cliente -> {
+            cliente.setRuolo(ruoloService.getRuoloById(cliente.getRuolo().getId()));
+            clients.add(cliente);
+        });
         return clients;
 
     }
@@ -28,7 +34,12 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public Cliente getClienteById(int id) {
         Optional<Cliente> optionalConsegna = clienteRepository.findById(id);
-        return optionalConsegna.orElse(null);
+        if (optionalConsegna.isPresent()) {
+            Cliente cliente = optionalConsegna.get();
+            cliente.setRuolo(ruoloService.getRuoloById(cliente.getRuolo().getId()));
+            return cliente;
+        }
+        return null;
     }
 
     @Override

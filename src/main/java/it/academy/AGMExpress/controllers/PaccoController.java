@@ -35,8 +35,18 @@ public class PaccoController {
         }
         return ResponseEntity.ok(pacchi);
     }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<Pacco> getPaccoById(@PathVariable int id) {
+        Pacco pacco = paccoService.getPaccoById(id);
 
-    @PostMapping
+        if (pacco == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pacco);
+    }
+    
+    @PostMapping("/utentePacchi")
     public ResponseEntity<List<Pacco>> getUserPacchi(@RequestBody Integer idUser){
 
         List<Pacco> pacchi = paccoRepository.getUserPacchi(idUser);
@@ -46,19 +56,6 @@ public class PaccoController {
         return ResponseEntity.ok(pacchi);
     }
 
-
-
-
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Pacco> getPaccoById(@PathVariable int id) {
-        Pacco pacco =paccoService.getPaccoById(id);
-
-        if (pacco == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(pacco);
-    }
     @PostMapping
     public ResponseEntity<Void> createPacco(@RequestBody Pacco pacco) {
         if (pacco.getTrackingCode() == null || pacco.getTrackingCode().isEmpty()) {
