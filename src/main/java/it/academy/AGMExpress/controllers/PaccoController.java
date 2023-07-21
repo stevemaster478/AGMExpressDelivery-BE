@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/pacchi")
 public class PaccoController {
-    
+
     @Autowired
     private PaccoService paccoService;
     private final PaccoRepository paccoRepository;
@@ -27,8 +27,9 @@ public class PaccoController {
         this.paccoService = paccoService;
         this.paccoRepository = paccoRepository;
     }
+
     @GetMapping
-    public ResponseEntity<List<Pacco>> getAllPacchi(){
+    public ResponseEntity<List<Pacco>> getAllPacchi() {
         List<Pacco> pacchi = paccoService.getAllPacchi();
         if (pacchi.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -36,29 +37,16 @@ public class PaccoController {
         return ResponseEntity.ok(pacchi);
     }
 
-    @PostMapping
-    public ResponseEntity<List<Pacco>> getUserPacchi(@RequestBody Integer idUser){
-
-        List<Pacco> pacchi = paccoRepository.getUserPacchi(idUser);
-        if (pacchi.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(pacchi);
-    }
-
-
-
-
-
     @GetMapping("/{id}")
     public ResponseEntity<Pacco> getPaccoById(@PathVariable int id) {
-        Pacco pacco =paccoService.getPaccoById(id);
+        Pacco pacco = paccoService.getPaccoById(id);
 
         if (pacco == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(pacco);
     }
+
     @PostMapping
     public ResponseEntity<Void> createPacco(@RequestBody Pacco pacco) {
         if (pacco.getTrackingCode() == null || pacco.getTrackingCode().isEmpty()) {
@@ -66,8 +54,7 @@ public class PaccoController {
             String trackingCode = TrackingCodeGenerator.generateTrackingCode();
             pacco.setTrackingCode(trackingCode);
         } else {
-            // Verifica che il tracking code inserito rispetti il formato desiderato |
-            // Metodo regex
+            // Verifica che il tracking code inserito rispetti il formato desiderato
             String regex = "^[A-Za-z0-9]{10}$";
             if (!pacco.getTrackingCode().matches(regex)) {
                 // Ritorna una risposta HTTP 400 - Bad Request se il tracking code non è valido
@@ -100,7 +87,7 @@ public class PaccoController {
 
         return ResponseEntity.noContent().build();
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePacco(@PathVariable int id) {
         Pacco existingPacco = paccoService.getPaccoById(id);
@@ -110,7 +97,6 @@ public class PaccoController {
         paccoService.deletePacco(id);
         return ResponseEntity.noContent().build();
     }
-
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException e) {

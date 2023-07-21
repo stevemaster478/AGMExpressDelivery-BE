@@ -57,6 +57,7 @@ public class ClienteServiceImpl implements ClienteService {
                     cliente.setPacchiRicevuti(c.getPacchiRicevuti());
                     cliente.setNumeroTelefono(c.getNumeroTelefono());
                     cliente.setPartitaIva(c.getPartitaIva());
+                    cliente.setRuolo(c.getRuolo());
                     return clienteRepository.save(cliente);
                 }
         );
