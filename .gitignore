@@ -19,6 +19,8 @@ target/
 
 /.mvn
 
+<<<<<<< HEAD
+=======
 # Application Properties
 /src/main/resources/application.properties
 
@@ -27,6 +29,7 @@ target/
 
 /src/main/resources/application.properties
 
+>>>>>>> 7c06e897885ed072e807e1386d8a64c00f307f66
 # IDEs
 
 .idea/

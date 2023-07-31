@@ -1,14 +1,9 @@
--- Inserimenti della tabella Ruolo 
-INSERT INTO ruolo (nome) VALUES ('Utente');
-INSERT INTO ruolo (nome) VALUES ('Fattorino');
-INSERT INTO ruolo (nome) VALUES ('Amministratore');
-
--- Inserimenti della tabella Cliente
-INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo_id) VALUES ('Mario', 123456789, 'Rossi', '1234567890', 1);
-INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo_id) VALUES ('Luca', 987654321, 'Bianchi', '0987654321', 2);
-INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo_id) VALUES ('Giulia', 555555555, 'Verdi', '5555555555', 1);
-INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo_id) VALUES ('Laura', 111111111, 'Neri', '1111111111', 3);
-INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo_id) VALUES ('Francesco', 999999999, 'Gialli', '9999999999', 1);
+-- Inserimenti della tabella Cliente con il campo ruolo
+INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo) VALUES ('Mario', 123456789, 'Rossi', '1234567890', 'utente');
+INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo) VALUES ('Luca', 987654321, 'Bianchi', '0987654321', 'amministratore');
+INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo) VALUES ('Giulia', 555555555, 'Verdi', '5555555555', 'utente');
+INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo) VALUES ('Laura', 111111111, 'Neri', '1111111111', 'utente');
+INSERT INTO clienti (nome, p_iva, cognome, n_telefono, ruolo) VALUES ('Francesco', 999999999, 'Gialli', '9999999999', 'amministratore');
 
 -- Inserimenti della tabella Indirizzo
 INSERT INTO indirizzi (via, cap, nr_civico, interno, citta, cliente_id) VALUES ('Via Roma', 12345, 1, 'Interno 2', 'Milano', 1);

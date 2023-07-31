@@ -46,9 +46,7 @@ public class Cliente {
     @OneToMany(mappedBy = "destinatario")
     private List<Pacco> pacchiRicevuti;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "ruolo_id", nullable = false)
-    private Ruolo ruolo;
+    @Column(name = "ruolo", nullable = false, length = 50)
+    private String ruolo;
 
 }
